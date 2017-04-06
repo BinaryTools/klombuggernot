@@ -1,1 +1,1 @@
-# klombuggernot
+# klombuggernot. Son requeridas librerias especiales
