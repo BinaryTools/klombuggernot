@@ -1,0 +1,41 @@
+package com.bt.univex.cjd.data;
+
+import com.xpc.base.BaseDataProvider; 
+import com.xpc.base.BaseDetachableModel;
+import com.xpc.binarytool.univex.connect.Connect; 
+import com.xpc.base.BaseDto;
+import java.sql.*;
+import org.apache.wicket.*;
+import org.apache.wicket.model.*;
+//===================================================================
+public class CJDVPersonPeritaProv extends BaseDataProvider {
+    public CJDVPersonPeritaProv() {
+        dao = new CJDVPersonPeritaDao(new Connect());
+        setSort("", true);
+    }
+
+    @Override 
+    public IModel model(Object obj) {
+        return new DetachableModel((CJDVPersonPeritaDto) obj);
+    }
+//================================= Detach Model ====================
+    public class DetachableModel extends BaseDetachableModel {
+
+        public DetachableModel(CJDVPersonPeritaDto inDto) {
+            super(inDto.toInt());
+            this.dto = inDto;
+        }
+
+        protected void onSetObject(Component comp, Object obj) {
+            dto = (CJDVPersonPeritaDto) obj;
+        }
+
+        protected void onAttach() {
+            if (dto == null) {
+                CJDVPersonPeritaDao newDao = new CJDVPersonPeritaDao();
+                dto = (BaseDto) newDao.findDtoByPkey(new Integer((int) Pk), 1);
+                dao = null;
+            }
+        }
+    } // End class
+} // End File
