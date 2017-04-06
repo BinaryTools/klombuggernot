@@ -4,7 +4,7 @@ import com.config.Defaults;
 import java.sql.Connection;
 import java.sql.SQLException;
 import oracle.jdbc.pool.OracleConnectionPoolDataSource;
-
+ 
 public class ConnectionManager  extends com.xpc.connect.ConnectionManager {
 
     private static OracleConnectionPoolDataSource dataSource = null;
